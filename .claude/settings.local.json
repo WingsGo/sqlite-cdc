@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(specify init:*)",
+      "Bash(pip show:*)",
+      "Bash(Grep:*)"
+    ]
+  }
+}
