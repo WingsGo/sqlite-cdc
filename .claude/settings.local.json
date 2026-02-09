@@ -3,7 +3,22 @@
     "allow": [
       "Bash(specify init:*)",
       "Bash(pip show:*)",
-      "Bash(Grep:*)"
+      "Bash(Grep:*)",
+      "Bash(find:*)",
+      "Bash(git fetch:*)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(pip install:*)",
+      "Bash(pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(python:*)",
+      "Bash(PYTHONPATH=/Users/wangcong/SourceCode/sqlite-cdc/src python:*)",
+      "Bash(sqlite-cdc:*)",
+      "Bash(PYTHONPATH=src python -m unittest:*)"
     ]
   }
 }

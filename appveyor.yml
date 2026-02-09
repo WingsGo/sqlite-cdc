@@ -1,0 +1,30 @@
+image:
+  - Visual Studio 2019
+
+environment:
+  PYTHON: "C:\\Python312"
+  PYPIPASSWORD:
+    secure: RGvnAogQh1u7iEqnqNDU3VbPyFbCNn44j7zo6KMLluoF7/XIn/Yc+DCO/Kcd4fQryu7S4Sc7LoI3QSKrlea9mIL6tvKx1Vyl+S2PgslxFMBe2MyNEjm3BHzWqZ4BgKMcUcedIlQcoIo7ddcrWJjwa2C6i+Wh83+9n8K/Pmu7t6KkYaRnCa78EOV3tkla0vGZjf/Um/z4EbIN/XzWFjLHrGZbGHI3FBkK6ZmfHs2nWCfxoWC/pcP+5NWaDm3HHAVG
+
+install:
+  - SET "PYTHONHOME=%PYTHON%"
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - c:\python312\python.exe -m pip install -U pip pycodestyle wheel setuptools build twine
+  - pip install -e ".[dev]"
+
+before_test:
+  - python --version
+
+test_script:
+  - pycodestyle . --max-line-length=120 --exclude=tests/,example/
+  - python -m pytest
+
+build_script:
+  - "[ -e dist ] && rm dist -rf || true"
+  - python -m build
+
+deploy_script:
+  - "echo [pypi] > %USERPROFILE%\\.pypirc"
+  - "echo username = __token__ >> %USERPROFILE%\\.pypirc"
+  - "echo password = %PYPIPASSWORD% >> %USERPROFILE%\\.pypirc"
+  - if "%APPVEYOR_REPO_TAG%"=="true" ( twine upload dist/* ) else ( echo "Not deploying because not a tagged commit." )
